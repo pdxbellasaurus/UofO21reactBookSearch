@@ -1,7 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Nav from "./components/Nav";
-import 'semantic-ui-css/semantic.min.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Books from './pages/Books';
+import Nav from './components/Nav';
+import Title from './components/Title';
+import Saved from './pages/Saved';
+import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
 
 function App() {
@@ -9,7 +12,15 @@ function App() {
     <Router>
       <Container>
         <Nav />
-       
+        <Title />
+        <Switch>
+          <Route exact path={['/', '/books']}>
+            <Books />
+          </Route>
+          <Route exact path={['/api/books']}>
+            <Saved />
+          </Route>
+        </Switch>
       </Container>
     </Router>
   );
