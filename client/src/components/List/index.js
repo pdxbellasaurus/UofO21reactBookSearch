@@ -27,8 +27,9 @@ export function ListItem({
   index,
   books,
 }) {
-  // const [disable, setSaved] = useState(false);
+
   const location = useLocation();
+  
   return (
     <Item>
       <Item.Image size='small' verticalAlign='middle' src={image} />
