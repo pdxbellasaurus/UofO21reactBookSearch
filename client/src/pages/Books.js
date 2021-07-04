@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import Search from '../components/Search';
 import { List, ListItem } from '../components/List';
@@ -6,9 +6,15 @@ import API from '../utils/API';
 
 function Books() {
   const [books, setBooks] = useState([]);
+  const [book, setBook] = useState({
+    title: '',
+    authors: [],
+    description: '',
+    link: '',
+    image: '',
+  });
 
-  function getBook(bookData) {
-    console.log('getbooks called');
+  function getBooks(bookData) {
     return {
       _id: bookData.id,
       title: bookData.volumeInfo.title,
@@ -25,9 +31,36 @@ function Books() {
     API.searchBooks(query)
       .then((res) => {
         console.log(res);
-        setBooks(res.items.map((bookData) => getBook(bookData)));
+        setBooks(res.items.map((bookData) => getBooks(bookData)));
       })
       .catch((err) => console.error(err));
+  }
+
+  useEffect(
+    (index) => {
+      setBook(index);
+      console.log('effect used book', book);
+      console.log('effect used books', books);
+    },
+    [book, books]
+  );
+
+  function handleSave(index) {
+    API.saveBook({
+      id: books[index].id,
+      title: books[index].title,
+      authors: books[index].authors,
+      description: books[index].description,
+      link: books[index].link,
+      image: books[index].image,
+    })
+      .then((res) => {
+        console.log(book);
+        console.log(books);
+        // setBook(book);
+        //   });
+      })
+      .catch((err) => console.log(err.res));
   }
 
   return (
@@ -38,13 +71,16 @@ function Books() {
           <List books={books}>
             {books.map((book, index) => (
               <ListItem
-                key={book._id}
+                handleSave={handleSave}
+                key={index}
+                id={book._id}
                 index={index}
                 title={book.title}
                 authors={book.authors}
-                link={book.link}
                 description={book.description}
+                link={book.link}
                 image={book.image}
+                book={book}
               ></ListItem>
             ))}
           </List>

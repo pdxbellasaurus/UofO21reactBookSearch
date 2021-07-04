@@ -28,13 +28,20 @@ function Search(props) {
       >
         <Form.Group>
           <Form.Input
+            focus
             placeholder='Search...'
             value={search}
             type='text'
             name='search'
+            color='blue'
             onChange={handleInputChange}
           />
-          <Form.Button icon='search' type='submit' content='Search' />
+          <Form.Button
+            icon='search'
+            type='submit'
+            content='Search'
+            color='blue'
+          />
         </Form.Group>
       </Form>
     </Container>

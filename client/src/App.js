@@ -4,6 +4,7 @@ import Books from './pages/Books';
 import Nav from './components/Nav';
 import Title from './components/Title';
 import Saved from './pages/Saved';
+import { Footer } from './components/Footer';
 import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
 
@@ -21,6 +22,7 @@ function App() {
             <Saved />
           </Route>
         </Switch>
+        <Footer/>
       </Container>
     </Router>
   );

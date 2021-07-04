@@ -22,7 +22,10 @@ export function ListItem({
   image,
   link,
   deleteBook,
+  handleSave,
   id,
+  index,
+  books,
 }) {
   const location = useLocation();
   return (
@@ -30,26 +33,39 @@ export function ListItem({
       <Item.Image size='small' verticalAlign='middle' src={image} />
       <Item.Content>
         <Item.Extra>
-          <Button color='blue' floated='right' href={link}>
-            <Icon name='external alternate' />
-            View
-          </Button>
-          {location.pathname === '/api/books' ? (
-            <Button
-              color='red'
-              floated='right'
-              id={id}
-              onClick={() => deleteBook(id)}
-            >
-              <Icon name='remove' />
-              Remove
+          <Button.Group floated='right'>
+            <Button color='blue' size='tiny' href={link}>
+              <Icon name='external alternate' />
+              View
             </Button>
-          ) : (
-            <Button color='blue' floated='right'>
-              <Icon name='save' />
-              Save
-            </Button>
-          )}
+            {location.pathname === '/api/books' ? (
+              <Button
+                color='red'
+                size='tiny'
+                id={id}
+                onClick={() => {
+                  deleteBook(id);
+                }}
+              >
+                <Icon name='remove' />
+                Remove
+              </Button>
+            ) : (
+              <Button
+                color='green'
+                size='tiny'
+                id={id}
+                index={index}
+                books={books}
+                onClick={() => {
+                  handleSave(index);
+                }}
+              >
+                <Icon name='save' />
+                Save
+              </Button>
+            )}
+          </Button.Group>
         </Item.Extra>
         <Item.Header href={link} name='title' as='a'>
           {title}

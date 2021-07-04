@@ -11,7 +11,6 @@ function Saved() {
   }, []);
 
   function loadBooks() {
-    console.log('savebook in saved called');
     API.getBooks()
       .then((books) => {
         setBooks(books);
@@ -31,14 +30,14 @@ function Saved() {
         <List books={books}>
           {books.map((book, index) => (
             <ListItem
-              onClick={() => deleteBook(book._id)}
+              deleteBook={deleteBook}
               key={index}
               id={book._id}
               index={index}
               title={book.title}
               authors={book.authors}
-              link={book.link}
               description={book.description}
+              link={book.link}
               image={book.image}
             ></ListItem>
           ))}
