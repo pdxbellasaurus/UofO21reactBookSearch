@@ -13,7 +13,7 @@ function Books() {
     link: '',
     image: '',
   });
-
+  
   function getBooks(bookData) {
     return {
       _id: bookData.id,
@@ -39,10 +39,8 @@ function Books() {
   useEffect(
     (index) => {
       setBook(index);
-      console.log('effect used book', book);
-      console.log('effect used books', books);
     },
-    [book, books]
+    [books]
   );
 
   function handleSave(index) {
@@ -55,10 +53,7 @@ function Books() {
       image: books[index].image,
     })
       .then((res) => {
-        console.log(book);
-        console.log(books);
-        // setBook(book);
-        //   });
+       setBooks(books)
       })
       .catch((err) => console.log(err.res));
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button, Icon, Item } from 'semantic-ui-react';
+import { Button, Icon, Item, Popup } from 'semantic-ui-react';
 
 export function List({ children }) {
   return (
@@ -27,6 +27,7 @@ export function ListItem({
   index,
   books,
 }) {
+  // const [disable, setSaved] = useState(false);
   const location = useLocation();
   return (
     <Item>
@@ -51,19 +52,26 @@ export function ListItem({
                 Remove
               </Button>
             ) : (
-              <Button
-                color='green'
-                size='tiny'
-                id={id}
-                index={index}
-                books={books}
-                onClick={() => {
-                  handleSave(index);
-                }}
-              >
-                <Icon name='save' />
-                Save
-              </Button>
+              <Popup
+                trigger={
+                  <Button
+                    color='green'
+                    icon='save'
+                    content='Save'
+                    id={id}
+                    index={index}
+                    books={books}
+                    onClick={() => {
+                      handleSave(index);
+                    }}
+                  />
+                }
+                content={
+                  <Button color='orange' content='Book saved to your list' />
+                }
+                on='click'
+                position='top right'
+              />
             )}
           </Button.Group>
         </Item.Extra>
