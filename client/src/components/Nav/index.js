@@ -5,7 +5,7 @@ function Nav() {
   return (
     <Menu pointing secondary>
       <Menu.Item icon='search' name='search' href='/' />
-      <Menu.Item icon='book' name='saved' href='/api/books' />
+      <Menu.Item icon='book' name='saved' href='/saved' />
     </Menu>
   );
 }
