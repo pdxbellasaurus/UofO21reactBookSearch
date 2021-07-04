@@ -67,7 +67,7 @@ export function ListItem({
                   />
                 }
                 content={
-                  <Button color='orange' content='Book saved to your list' />
+                  <Button color='orange' content='Book has been saved to your list' />
                 }
                 on='click'
                 position='top right'
