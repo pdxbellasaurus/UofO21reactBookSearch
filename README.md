@@ -41,10 +41,7 @@ Node.js - There are installers and packages for all the common operating systems
 ```
 npm start
 ```
-To launch the test runner in the interactive watch mode:
-```
-npm test
-```
+
 To build the app for production to the `build` folder:
 ```
 npm run build
