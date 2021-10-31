@@ -40,7 +40,7 @@ export function ListItem({
               <Icon name='external alternate' />
               View
             </Button>
-            {location.pathname === '/api/books' ? (
+            {location.pathname === '/saved' ? (
               <Button
                 color='red'
                 size='tiny'
